@@ -39,7 +39,7 @@
                             <span class="text-xs font-bold text-slate-400 bg-slate-100 px-2 py-1 rounded-full uppercase tracking-tighter">1,240 Units</span>
                         </div>
                         <h3 class="text-lg font-bold text-slate-900">Laptops</h3>
-                        <p class="text-sm text-slate-500 mt-1">MacBooks, Dell XPS, ThinkPads, and Workstations.</p>
+                        <p class="text-sm text-slate-500 mt-1">Lenovo, Thinkpad, and Workstations.</p>
                     </a>
 
                     <a href="#" class="group bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-blue-300 transition-all">

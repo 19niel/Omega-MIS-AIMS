@@ -20,7 +20,7 @@ Route::get('/dashboard', function () {
     })->name('dashboard');
 
     Route::get('/assets', function () {
-        return view('assets/assets');
+        return view('assets/index');
     })->name('assets.index');
 
     Route::get('/users', function () {
