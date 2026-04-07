@@ -12,7 +12,7 @@ class AdminUserSeeder extends Seeder
     {
         User::create([
             'name' => 'MIS Admin',
-            'email' => 'admin@ubix.com.ph',
+            'email' => 'admin',
             'password' => Hash::make('123'), 
         ]);
     }

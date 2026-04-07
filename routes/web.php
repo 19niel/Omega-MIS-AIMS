@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EmployeesController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -10,7 +11,6 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Dashboard (Protected by 'auth' middleware)
-
 Route::middleware('auth')->group(function (){
 
 
@@ -33,10 +33,12 @@ Route::middleware('auth')->group(function (){
         return abort(404);
     })->name('assets.category');
 
-    //Users Page
-    Route::get('/employees', function(){
-        return view('employees.index');
-    })->name('/employees/index');
+
+    
+    //Employees Page
+    Route::get('/employees', [EmployeesController::class, 'index'])->name('employees.index');
+    // This handles the form submission (Add this line!)
+    Route::post('/employees', [EmployeesController::class, 'store'])->name('employees.store');
 });
 
 
