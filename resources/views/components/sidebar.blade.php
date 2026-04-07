@@ -1,5 +1,5 @@
-<aside class="w-64 border-r border-slate-200 bg-white h-screen flex flex-col sticky top-0">
-    <div class="p-6">
+<aside class="w-50 border-r border-slate-200 bg-white h-screen flex flex-col sticky top-0">
+    <div class="p-4">
         <div class="flex items-center gap-3 mb-10">
             <img src="{{ asset('aims_logo.svg') }}" class="w-8 h-8" alt="Logo">
             <span class="font-bold text-xl tracking-tight text-slate-900">MIS-<span class="text-blue-600">AIMS</span></span>
@@ -18,10 +18,10 @@
                 Assets
             </a>
 
-            <a href="{{ route('users.index') }}" 
-            class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg {{ request()->routeIs('users.index') ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-50' }}">
+            <a href="{{ route('/employees/index') }}" 
+            class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg {{ request()->routeIs('/employees/index') ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-50' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                Users
+                Employees
             </a>
         </nav>
     </div>

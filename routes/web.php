@@ -11,18 +11,32 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Dashboard (Protected by 'auth' middleware)
 
-Route::get('/dashboard', function() {
-    return view('dashboard');
-})->middleware('auth')->name('dashboard');
+Route::middleware('auth')->group(function (){
 
-Route::get('/dashboard', function () {
+
+    //Dashaboard
+    Route::get('/dashboard', function(){
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/assets', function () {
-        return view('assets/index');
+    // Assets Main Menu (The grid with each Assets)
+    Route::get('/assets', function(){
+        return view('assets.index');
     })->name('assets.index');
 
-    Route::get('/users', function () {
-        return view('users');
-    })->name('users.index');
+    // Assets Categories (This opens laptop.blade, pc.blade, etc...)
+    // the {category} acts like a variable
+    Route::get('/assets/{category}', function ($category){
+        if (view()->exists("assets.$category")){
+            return view("assets.$category");
+        }
+        return abort(404);
+    })->name('assets.category');
+
+    //Users Page
+    Route::get('/employees', function(){
+        return view('employees.index');
+    })->name('/employees/index');
+});
+
+
