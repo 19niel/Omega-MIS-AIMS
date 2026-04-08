@@ -6,21 +6,36 @@ use Illuminate\Database\Eloquent\Model;
 
 class Asset extends Model
 {
-    public function ip(): void 
-    {
-       Schema::create('assets', function (Blueprint $table) {
-        $table->id();
-        $table->string('category'); // Laptop, PC, etc.
-        $table->string('brand');
-        $table->string('model');
-        $table->text('specs')->nullable();
-        $table->string('status')->default('Available');
-        
-        // Tracking who has it
-        $table->unsignedBigInteger('issued_to')->nullable();
-        $table->foreign('issued_to')->references('id')->on('users')->onDelete('set null');
+    // These must match your migration column names exactly
+    protected $fillable = [
+        'category', 
+        'brand', 
+        'model', 
+        'cpu', 
+        'ram', 
+        'storage', 
+        'image', 
+        'status', 
+        'issued_to', 
+        'recent_owner', 
+        'history_logs'
+    ];
 
-        $table->timestamps(); // creates date_created and date_modified
-    });
+    // This ensures history_logs is treated as an array in PHP
+    protected $casts = [
+        'history_logs' => 'array',
+    ];
+
+    /**
+     * Relationship: An asset belongs to an employee.
+     */
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'issued_to');
+    }
+
+    public function histories()
+    {
+        return $this->hasMany(History::class, 'asset_id')->latest();
     }
 }

@@ -8,7 +8,12 @@
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style> [x-cloak] { display: none !important; } </style>
 </head>
-<body class="bg-slate-50 font-sans antialiased" x-data="{ showAddModal: false }">
+<body class="bg-slate-50 font-sans antialiased" 
+        x-data="{ 
+        showAddModal: false, 
+        showDeleteModal: false, 
+        selectedEmployeeId: null, 
+        selectedEmployeeName: '' }" >
     <div class="flex min-h-screen">
         <x-sidebar />
         <main class="flex-1 bg-slate-50 min-h-screen p-8">
@@ -83,9 +88,11 @@
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
                                             </button>
 
-                                            <button title="Delete User" class="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
-                                            </button>
+                                        <button title="Delete User" 
+                                                @click="showDeleteModal = true; selectedEmployeeId = {{ $employee->id }}; selectedEmployeeName = '{{ $employee->name }}'"
+                                                class="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                                        </button>
                                         </div>
                                     </td>
                                 </tr>
@@ -104,6 +111,7 @@
     </div>
 
     @include('employees.forms.add_employee')
+    @include('employees.forms.delete_employee')
 
 </body>
 </html>
